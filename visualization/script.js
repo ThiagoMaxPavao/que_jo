@@ -3,11 +3,12 @@ var graph;
 var dragTarget = null;
 
 function onDragMove(event) {
-    if (!dragTarget) return;
-    dragTarget.parent.toLocal(event.global, null, dragTarget.position);
-
-    dragTarget.vertex.edges.forEach(edge => {
-        edge.update();
+    requestAnimationFrame(() => {
+        if (!dragTarget) return;
+        dragTarget.parent.toLocal(event.global, null, dragTarget.position)
+        dragTarget.vertex.edges.forEach(edge => {
+            edge.update();
+        });
     });
 }
 
